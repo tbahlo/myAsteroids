@@ -1,5 +1,6 @@
 from version01.game.physicalObject import PhysicalObject
 import resources, pyglet
+from version01.game.bullet import Bullet
 from pyglet.window import key
 import math
 
@@ -16,6 +17,11 @@ class Player(PhysicalObject):
             img=pyglet.resource.image("engine_flame.png"), *args, **kwargs
         )
         self.engine_sprite.visible = False
+        self.bullet_speed = 700.0
+
+    def fire(self):
+        angle_radians = -math.radians(self.rotation)
+        # TODO: continue from here!
 
     def update(self, dt):
         super(Player, self).update(dt)
@@ -36,6 +42,8 @@ class Player(PhysicalObject):
             self.engine_sprite.visible = True
         else:
             self.engine_sprite.visible = False
+        if self.key_handler[key.SPACE]:
+            self.fire()
 
     def delete(self):
         self.engine_sprite.delete()
