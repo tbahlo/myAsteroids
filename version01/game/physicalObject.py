@@ -1,6 +1,7 @@
 import pyglet
 from version01.game.util import distance
 
+
 class PhysicalObject(pyglet.sprite.Sprite):
     def __init__(self, *args, **kwargs):
         super(PhysicalObject, self).__init__(*args, **kwargs)
@@ -30,9 +31,9 @@ class PhysicalObject(pyglet.sprite.Sprite):
 
     def collides_with(self, other_object):
         # only works well for squares
-        collision_distance = self.image.width/2 + other_object.image.width/2
+        collision_distance = self.image.width / 2 + other_object.image.width / 2
         actual_distance = distance(self.position, other_object.position)
-        return (actual_distance <= collision_distance)
+        return actual_distance <= collision_distance
 
     def handle_collision_with(self, other_object):
         self.dead = True
